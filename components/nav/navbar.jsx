@@ -25,19 +25,16 @@ const NavBar = () => {
     getUsername();
   }, [])
 
-  console.log({username})
   const router = useRouter()
 
   const handleOnClickHome = (e) => {
     e.preventDefault()
     router.push('/')
-    console.log('go home')
   }
 
   const handleOnClickMyList = (e) => {
     e.preventDefault()
     router.push("/browse/my-list")
-    console.log('my list')
   }
 
   const handleOnClickShowDropdown = (e) => {

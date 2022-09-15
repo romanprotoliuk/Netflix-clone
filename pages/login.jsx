@@ -31,13 +31,11 @@ const Login = () => {
   const handleOnChangeEmail = (e) => {
     setUserMsg("")
     const email = e.target.value
-    console.log('change')
     setEmail(email)  
   }
  
   const handleLoginWithEmail = async (e) => {
     e.preventDefault()
-    console.log("hi button")
     
 
     if (email) {
@@ -46,7 +44,6 @@ const Login = () => {
         try {
           setIsLoading(true)
           const didToken = await magic.auth.loginWithMagicLink({ email, showUI: true });
-          console.log({ didToken })
 
           if (didToken) {
             router.push('/')
