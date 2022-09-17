@@ -8,6 +8,8 @@ import NavBar from "../../components/nav/navbar";
 import clsx from "classnames";
 
 import { getYoutubeVideoById } from "../../lib/videos";
+import DisLike from "../../components/icons/dislike-icon";
+import Like from "../../components/icons/like-icon"
 
 // import Like from "../../components/icons/like-icon";
 // import DisLike from "../../components/icons/dislike-icon";
@@ -82,23 +84,23 @@ const Video = ({ video }) => {
   //   });
   // };
 
-  // const handleToggleDislike = async () => {
-  //   setToggleDisLike(!toggleDisLike);
-  //   setToggleLike(toggleDisLike);
+  const handleToggleDislike = async () => {
+    setToggleDisLike(!toggleDisLike);
+    setToggleLike(toggleDisLike);
 
-  //   const val = !toggleDisLike;
-  //   const favourited = val ? 0 : 1;
-  //   const response = await runRatingService(favourited);
-  // };
+    const val = !toggleDisLike;
+    const favorited = val ? 0 : 1;
+    // const response = await runRatingService(favourited);
+  };
 
-  // const handleToggleLike = async () => {
-  //   const val = !toggleLike;
-  //   setToggleLike(val);
-  //   setToggleDisLike(toggleLike);
+  const handleToggleLike = async () => {
+    const val = !toggleLike;
+    setToggleLike(val);
+    setToggleDisLike(toggleLike);
 
-  //   const favourited = val ? 1 : 0;
-  //   const response = await runRatingService(favourited);
-  // };
+    const favorited = val ? 1 : 0;
+    // const response = await runRatingService(favourited);
+  };
 
   return (
     <div className={styles.container}>
@@ -122,18 +124,19 @@ const Video = ({ video }) => {
 
         <div className={styles.likeDislikeBtnWrapper}>
           <div className={styles.likeBtnWrapper}>
-            <button>
+            <button onClick={handleToggleDislike}>
               <div className={styles.btnWrapper}>
-                {/* <Like selected={toggleLike} /> */}
+                <Like selected={toggleDisLike} />
               </div>
             </button>
           </div>
-          <button>
+          <button onClick={handleToggleLike}>
             <div className={styles.btnWrapper}>
-              {/* <DisLike selected={toggleDisLike} /> */}
+              <DisLike selected={toggleLike} />
             </div>
           </button>
         </div>
+        
         <div className={styles.modalBody}>
           <div className={styles.modalBodyContent}>
             <div className={styles.col1}>
