@@ -12,6 +12,8 @@ import { redirectUser } from '../utils/redirectUser';
 export async function getServerSideProps(context) {
 	const { userId, token } = await redirectUser(context);
 
+	// const userId = null;
+
 	if (!userId) {
 		return {
 			props: {},
