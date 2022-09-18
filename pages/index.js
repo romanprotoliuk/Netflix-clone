@@ -53,10 +53,10 @@ export default function Home({ disneyVideos, travelVideos, productivityVideos, p
 			<div className={styles.main}>
 				<NavBar />
 				<Banner
-					videoId="4zH5iYM4wJo"
-					title="Clifford the red dog"
-					subTitle="a very cute dog"
-					imgUrl="/static/clifford.webp"
+					videoId="H8z6GDnEaM8"
+					title="PEAKY BLINDERS"
+					subTitle="A notorious gang in 1919 Birmingham, England, is led by the fierce Tommy Shelby, a crime boss set on moving up in the world no matter the cost."
+					imgUrl="/static/peaky-blinders.jpg"
 				/>
 
 				<div className={styles.sectionWrapper}>
