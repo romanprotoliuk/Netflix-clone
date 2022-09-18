@@ -8,11 +8,9 @@ import NavBar from "../../components/nav/navbar";
 import clsx from "classnames";
 
 import { getYoutubeVideoById } from "../../lib/videos";
-import DisLike from "../../components/icons/dislike-icon";
-import Like from "../../components/icons/like-icon"
 
-// import Like from "../../components/icons/like-icon";
-// import DisLike from "../../components/icons/dislike-icon";
+import Like from "../../components/icons/like-icon";
+import DisLike from "../../components/icons/dislike-icon";
 
 Modal.setAppElement("#__next");
 
@@ -60,10 +58,10 @@ const Video = ({ video }) => {
       const data = await response.json();
 
       if (data.length > 0) {
-        const favourited = data[0].favourited;
-        if (favourited === 1) {
+        const favorited = data[0].favorited;
+        if (favorited === 1) {
           setToggleLike(true);
-        } else if (favourited === 0) {
+        } else if (favorited === 0) {
           setToggleDisLike(true);
         }
       }
@@ -71,18 +69,18 @@ const Video = ({ video }) => {
     handleLikeDislikeService();
   }, [videoId]);
 
-  // const runRatingService = async (favourited) => {
-  //   return await fetch("/api/stats", {
-  //     method: "POST",
-  //     body: JSON.stringify({
-  //       videoId,
-  //       favourited,
-  //     }),
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //   });
-  // };
+  const runRatingService = async (favorited) => {
+    return await fetch("/api/stats", {
+      method: "POST",
+      body: JSON.stringify({
+        videoId,
+        favorited,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+  };
 
   const handleToggleDislike = async () => {
     setToggleDisLike(!toggleDisLike);
@@ -90,7 +88,7 @@ const Video = ({ video }) => {
 
     const val = !toggleDisLike;
     const favorited = val ? 0 : 1;
-    // const response = await runRatingService(favourited);
+    const response = await runRatingService(favorited);
   };
 
   const handleToggleLike = async () => {
@@ -99,7 +97,7 @@ const Video = ({ video }) => {
     setToggleDisLike(toggleLike);
 
     const favorited = val ? 1 : 0;
-    // const response = await runRatingService(favourited);
+    const response = await runRatingService(favorited);
   };
 
   return (
@@ -124,19 +122,18 @@ const Video = ({ video }) => {
 
         <div className={styles.likeDislikeBtnWrapper}>
           <div className={styles.likeBtnWrapper}>
-            <button onClick={handleToggleDislike}>
+            <button onClick={handleToggleLike}>
               <div className={styles.btnWrapper}>
-                <Like selected={toggleDisLike} />
+                <Like selected={toggleLike} />
               </div>
             </button>
           </div>
-          <button onClick={handleToggleLike}>
+          <button onClick={handleToggleDislike}>
             <div className={styles.btnWrapper}>
-              <DisLike selected={toggleLike} />
+              <DisLike selected={toggleDisLike} />
             </div>
           </button>
         </div>
-        
         <div className={styles.modalBody}>
           <div className={styles.modalBodyContent}>
             <div className={styles.col1}>
